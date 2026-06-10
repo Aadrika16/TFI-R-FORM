@@ -19,7 +19,7 @@ const TrendFusionPage = () => {
         </h1>
 
         <img
-          src="YOUR_PROFILE_ICON_URL"
+          src="https://res.cloudinary.com/doyaebals/image/upload/v1781082838/Layer_6_gspwec.png"
           alt="profile"
           className="profile-icon"
         />

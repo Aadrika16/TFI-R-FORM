@@ -8,13 +8,16 @@
 
 body{
   font-family:"Poppins",sans-serif;
-  background: #FDDEA5;
+  background:#f6f1eb;
 }
 
 .trend-fusion-page{
   min-height:100vh;
   padding:25px 60px;
+  background:#FDDEA5;
 }
+
+/* HEADER */
 
 .tfi-header{
   display:flex;
@@ -23,86 +26,116 @@ body{
 }
 
 .tfi-logo{
-  width:65px;
+  width:70px;
+  height:auto;
 }
 
 .profile-icon{
   width:45px;
+  height:45px;
 }
 
 .tfi-header h1{
   font-size:42px;
-  color:#8b95d6;
+  color:  #969496 ;
+
   letter-spacing:2px;
+  text-align:center;
 }
 
 .header-line{
   height:1px;
   background:#c4c4c4;
-  margin:25px 0 50px;
+  margin:25px 0 40px;
 }
+
+/* MAIN CONTENT */
 
 .main-content{
   display:grid;
-  grid-template-columns:1fr 520px;
-  gap:80px;
+  grid-template-columns:65% 35%;
+  gap:30px;
+  align-items:start;
+}
+
+/* LEFT SECTION */
+
+.left-panel{
+  width:100%;
 }
 
 .left-panel h2{
   font-family:"Cormorant Garamond",serif;
-  font-size:60px;
-  line-height:1.05;
+  font-size:68px;
+  line-height:1;
   font-style:italic;
   font-weight:400;
+  color:#111;
 }
 
 .left-panel p{
-  margin:25px 0 40px;
-  max-width:520px;
+  margin:25px 0 35px;
+  max-width:600px;
   line-height:1.8;
   color:#555;
+  font-size:15px;
 }
 
 .location-row{
   display:flex;
-  gap:60px;
-  margin-bottom:40px;
+  gap:70px;
+  margin-bottom:30px;
 }
 
 .location-row span{
-  font-size:10px;
-  color:#888;
+  font-size:11px;
+  color:#777;
   letter-spacing:1px;
 }
 
 .location-row h4{
-  margin-top:5px;
+  margin-top:6px;
+  font-size:18px;
+  color:#111;
 }
+
+/* KIDS IMAGE */
 
 .kids-model-image{
-  max-width:420px;
+  width:700px;
+  margin-top: -60px;
+  height:300px;
+  margin-left:-50px;
+  object-position:left center;
 }
+/* RIGHT PANEL */
 
 .right-panel{
-  
-  background: #F6C79C;
-
-  border:1px solid #d9d2ca;
+  width:100%;
+  margin-top: 30px;
+  min-width:500px;
+  background:#F6C79C;
+  border:1px solid #262524;
   padding:35px;
+  border-radius:4px;
 }
 
 .casting-call{
   display:block;
   font-size:11px;
-  color:#888;
-  letter-spacing:1px;
+  color:#555;
+  letter-spacing:1.5px;
+  margin-bottom:8px;
 }
 
 .portfolio-heading{
   font-family:"Cormorant Garamond",serif;
-  font-size:40px;
-  margin:10px 0 30px;
+  font-size:42px;
+  margin-bottom:30px;
+  color:#111;
 }
+
+/* FOOTER */
 
 .footer-section{
   margin-top:60px;
@@ -110,15 +143,39 @@ body{
   grid-template-columns:80px 1fr 1fr 1fr;
   align-items:center;
   gap:20px;
+  border-top:1px solid rgba(0,0,0,0.15);
+  padding-top:25px;
 }
 
 .footer-logo{
   width:60px;
 }
 
+.footer-section p{
+  color:#444;
+  font-size:14px;
+}
+
+/* LARGE LAPTOP */
+
+@media screen and (max-width:1400px){
+
+  .main-content{
+    grid-template-columns:52% 48%;
+  }
+
+  .kids-model-image{
+    height:680px;
+  }
+
+  .right-panel{
+    min-width:450px;
+  }
+}
+
 /* TABLET */
 
-@media(max-width:992px){
+@media screen and (max-width:992px){
 
   .trend-fusion-page{
     padding:25px;
@@ -142,7 +199,12 @@ body{
   }
 
   .kids-model-image{
+    height:550px;
     margin:auto;
+  }
+
+  .right-panel{
+    min-width:100%;
   }
 
   .footer-section{
@@ -153,22 +215,31 @@ body{
 
 /* MOBILE */
 
-@media(max-width:768px){
+@media screen and (max-width:768px){
 
   .trend-fusion-page{
     padding:20px;
   }
 
+  .tfi-header{
+    flex-direction:column;
+    gap:15px;
+  }
+
   .tfi-header h1{
-    font-size:24px;
+    font-size:28px;
   }
 
   .left-panel h2{
-    font-size:42px;
+    font-size:50px;
   }
 
   .portfolio-heading{
-    font-size:30px;
+    font-size:34px;
+  }
+
+  .kids-model-image{
+    height:420px;
   }
 
   .right-panel{
@@ -176,18 +247,31 @@ body{
   }
 }
 
-@media(max-width:480px){
+/* SMALL MOBILE */
+
+@media screen and (max-width:480px){
 
   .tfi-header h1{
-    font-size:18px;
+    font-size:22px;
   }
 
   .left-panel h2{
-    font-size:34px;
+    font-size:38px;
+  }
+
+  .left-panel p{
+    font-size:14px;
   }
 
   .portfolio-heading{
-    font-size:24px;
+    font-size:28px;
   }
 
+  .kids-model-image{
+    height:320px;
+  }
+
+  .location-row{
+    gap:30px;
+  }
 }
