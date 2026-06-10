@@ -1,0 +1,137 @@
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  background: #F6C79C;
+
+  gap: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 10px;
+  color: #3a3838;
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.registration-form input,
+.registration-form select {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #353433;
+  background: #F6C79C;
+  padding: 0 14px;
+  outline: none;
+  font-size: 13px;
+
+  font-family: "Poppins", sans-serif;
+}
+
+.registration-form input::placeholder {
+  color: #fff;
+}
+
+.registration-form input:focus,
+.registration-form select:focus {
+  border-color: #aaa;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Upload Box */
+
+.upload-box {
+  min-height: 150px;
+  border: 1px solid #d9d2ca;
+  background: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-box.active {
+  background: #f7f7f7;
+}
+
+.upload-box h3 {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.upload-box p {
+  font-size: 11px;
+  color: #888;
+}
+
+.preview-image {
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Submit Button */
+
+.submit-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  background: #111;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #222;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Tablet */
+
+@media screen and (max-width: 768px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-image {
+    width: 100px;
+    height: 130px;
+  }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 480px) {
+  .registration-form input,
+  .registration-form select {
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .submit-btn {
+    height: 48px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+}
