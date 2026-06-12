@@ -96,10 +96,10 @@ const TrendFusionForm = () => {
       };
 
       await emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "service_wrd3exi",
+        "template_pwucybg",
         templateParams,
-        "YOUR_PUBLIC_KEY"
+        "iWHNroITMuY07sx"
       );
 
       alert(
