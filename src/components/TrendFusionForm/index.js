@@ -19,9 +19,7 @@ const TrendFusionForm = () => {
     email: "",
   });
 
-  const [selectedImage, setSelectedImage] =
-    useState(null);
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const [preview, setPreview] = useState("");
 
   const handleChange = (e) => {
@@ -31,32 +29,26 @@ const TrendFusionForm = () => {
     }));
   };
 
-  const onDrop = (acceptedFiles) => {
+  const onDrop = (acceptedFiles, fileRejections) => {
+    if (fileRejections.length > 0) {
+      alert("Image size must be below 500KB");
+      return;
+    }
+
     const file = acceptedFiles[0];
 
     if (!file) return;
 
     setSelectedImage(file);
-
-    setPreview(
-      URL.createObjectURL(file)
-    );
+    setPreview(URL.createObjectURL(file));
   };
 
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-  } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
-      "image/*": [
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".webp",
-      ],
+      "image/*": [".jpg", ".jpeg", ".png", ".webp"],
     },
     multiple: false,
+    maxSize: 500 * 1024,
     onDrop,
   });
 
@@ -66,8 +58,7 @@ const TrendFusionForm = () => {
 
       reader.readAsDataURL(file);
 
-      reader.onload = () =>
-        resolve(reader.result);
+      reader.onload = () => resolve(reader.result);
 
       reader.onerror = reject;
     });
@@ -76,35 +67,32 @@ const TrendFusionForm = () => {
     e.preventDefault();
 
     if (!selectedImage) {
-      alert(
-        "Please upload a passport size photo"
-      );
+      alert("Please upload a passport size photo");
       return;
     }
 
     try {
       setLoading(true);
 
-      const imageBase64 =
-        await convertToBase64(
-          selectedImage
-        );
+      const imageBase64 = await convertToBase64(selectedImage);
 
       const templateParams = {
         ...formData,
         image: imageBase64,
+        eventName: "TFI Kids Fashion Week 2026",
+        location: "Hyderabad",
+        eventDates: "3, 4 & 5 July 2026",
+        submissionDate: new Date().toLocaleString(),
       };
 
       await emailjs.send(
         "service_wrd3exi",
         "template_pwucybg",
         templateParams,
-        "iWHNroITMuY07sx"
+        "iWHNroQiTMuY07sQX"
       );
 
-      alert(
-        "Registration submitted successfully!"
-      );
+      alert("Registration submitted successfully!");
 
       setFormData({
         fullName: "",
@@ -122,24 +110,16 @@ const TrendFusionForm = () => {
       setPreview("");
     } catch (error) {
       console.log(error);
-
-      alert(
-        "Something went wrong. Please try again."
-      );
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form
-      className="registration-form"
-      onSubmit={handleSubmit}
-    >
+    <form className="registration-form" onSubmit={handleSubmit}>
       <div>
-        <label className="form-label">
-          FULL NAME
-        </label>
+        <label className="form-label">FULL NAME</label>
 
         <input
           type="text"
@@ -153,9 +133,7 @@ const TrendFusionForm = () => {
 
       <div className="grid-two">
         <div>
-          <label className="form-label">
-            AGE
-          </label>
+          <label className="form-label">AGE</label>
 
           <input
             type="number"
@@ -168,9 +146,7 @@ const TrendFusionForm = () => {
         </div>
 
         <div>
-          <label className="form-label">
-            GENDER
-          </label>
+          <label className="form-label">GENDER</label>
 
           <select
             name="gender"
@@ -178,30 +154,17 @@ const TrendFusionForm = () => {
             onChange={handleChange}
             required
           >
-            <option value="">
-              Select Gender
-            </option>
-
-            <option value="Male">
-              Male
-            </option>
-
-            <option value="Female">
-              Female
-            </option>
-
-            <option value="Other">
-              Other
-            </option>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
           </select>
         </div>
       </div>
 
       <div className="grid-two">
         <div>
-          <label className="form-label">
-            HEIGHT (CM)
-          </label>
+          <label className="form-label">HEIGHT (CM)</label>
 
           <input
             type="text"
@@ -213,9 +176,7 @@ const TrendFusionForm = () => {
         </div>
 
         <div>
-          <label className="form-label">
-            SHOE SIZE
-          </label>
+          <label className="form-label">SHOE SIZE</label>
 
           <input
             type="text"
@@ -229,9 +190,7 @@ const TrendFusionForm = () => {
 
       <div className="grid-two">
         <div>
-          <label className="form-label">
-            HAIR COLOR
-          </label>
+          <label className="form-label">HAIR COLOR</label>
 
           <input
             type="text"
@@ -243,9 +202,7 @@ const TrendFusionForm = () => {
         </div>
 
         <div>
-          <label className="form-label">
-            EYE COLOR
-          </label>
+          <label className="form-label">EYE COLOR</label>
 
           <input
             type="text"
@@ -258,9 +215,7 @@ const TrendFusionForm = () => {
       </div>
 
       <div>
-        <label className="form-label">
-          MOBILE NUMBER
-        </label>
+        <label className="form-label">MOBILE NUMBER</label>
 
         <input
           type="tel"
@@ -273,9 +228,7 @@ const TrendFusionForm = () => {
       </div>
 
       <div>
-        <label className="form-label">
-          EMAIL ADDRESS
-        </label>
+        <label className="form-label">EMAIL ADDRESS</label>
 
         <input
           type="email"
@@ -288,54 +241,28 @@ const TrendFusionForm = () => {
       </div>
 
       <div>
-        <label className="form-label">
-          PASSPORT SIZE PHOTO
-        </label>
+        <label className="form-label">PASSPORT SIZE PHOTO</label>
 
         <div
           {...getRootProps()}
-          className={`upload-box ${
-            isDragActive
-              ? "active"
-              : ""
-          }`}
+          className={`upload-box ${isDragActive ? "active" : ""}`}
         >
-          <input
-            {...getInputProps()}
-          />
+          <input {...getInputProps()} />
 
           {!preview ? (
             <>
-              <h3>
-                Upload Passport Photo
-              </h3>
-
-              <p>
-                JPG • PNG • WEBP
-              </p>
-
-              <p>
-                Click or Drag & Drop
-              </p>
+              <h3>Upload Passport Photo</h3>
+              <p>JPG • PNG • WEBP • Max 500KB</p>
+              <p>Click or Drag & Drop</p>
             </>
           ) : (
-            <img
-              src={preview}
-              alt="preview"
-              className="preview-image"
-            />
+            <img src={preview} alt="preview" className="preview-image" />
           )}
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="submit-btn"
-        disabled={loading}
-      >
-        {loading
-          ? "SUBMITTING..."
-          : "REGISTER NOW"}
+      <button type="submit" className="submit-btn" disabled={loading}>
+        {loading ? "SUBMITTING..." : "REGISTER NOW"}
       </button>
     </form>
   );
